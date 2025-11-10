@@ -1,0 +1,85 @@
+
+mysql> use hospitaldb;
+Database changed
+mysql> select * from patients;
++----+----------------+------+--------+------------+------------+
+| id | NAME           | AGE  | GENDER | PHONE_NO   | DATE       |
++----+----------------+------+--------+------------+------------+
+|  1 | trip           |   12 | f      |       5678 | 2025-10-15 |
+|  6 | SHRUTI         |   28 | F      | 9078634521 | 2025-10-25 |
+|  3 | dipa           |   45 | f      |     654329 | 2025-10-17 |
+|  4 | deepak singh   |   65 | male   |    8754478 | 2025-10-22 |
+|  5 | chinmoy ghosal |   37 | male   |     346796 | 2025-10-21 |
+|  8 | nupur sen      |   28 | f      | 9087654321 | 2025-10-24 |
+|  9 | kajal          |   19 | f      | 8097654312 | 2025-10-25 |
+| 10 | shib           |   55 | male   |        412 | 2012-02-20 |
+| 11 | TRIPARNA       |   41 | F      |   56789768 | 2025-10-12 |
++----+----------------+------+--------+------------+------------+
+9 rows in set (0.02 sec)
+
+mysql> desc patients;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int          | NO   | PRI | NULL    | auto_increment |
+| NAME     | varchar(200) | YES  |     | NULL    |                |
+| AGE      | int          | YES  |     | NULL    |                |
+| GENDER   | varchar(100) | YES  |     | NULL    |                |
+| PHONE_NO | bigint       | YES  |     | NULL    |                |
+| DATE     | date         | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+6 rows in set (0.02 sec)
+
+mysql> desc doctors;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| ID             | int          | NO   | PRI | NULL    | auto_increment |
+| NAME           | varchar(200) | YES  |     | NULL    |                |
+| SPECIALIZATION | varchar(200) | YES  |     | NULL    |                |
+| CONTACT        | bigint       | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from doctors;
++----+-----------------+----------------+------------+
+| ID | NAME            | SPECIALIZATION | CONTACT    |
++----+-----------------+----------------+------------+
+|  1 | subhas          | md             |    8710964 |
+|  3 | ramesh          | dermatologist  |     874256 |
+|  4 | neha            | optometrist    | 7098654123 |
+|  5 | mohor dey       | oncologist     |  809763421 |
+|  6 | debashish ghosh | nutritionist   | 9067543421 |
++----+-----------------+----------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> desc bookings;
++------------------+---------------+------+-----+---------+----------------+
+| Field            | Type          | Null | Key | Default | Extra          |
++------------------+---------------+------+-----+---------+----------------+
+| booking_id       | int           | NO   | PRI | NULL    | auto_increment |
+| patient_id       | int           | YES  | MUL | NULL    |                |
+| patient_name     | varchar(200)  | YES  |     | NULL    |                |
+| doctor_id        | int           | YES  | MUL | NULL    |                |
+| doctor_name      | varchar(200)  | YES  |     | NULL    |                |
+| appointment_date | date          | YES  |     | NULL    |                |
+| fees             | decimal(10,2) | YES  |     | NULL    |                |
+| payment_amount   | decimal(10,2) | YES  |     | NULL    |                |
+| due_amount       | decimal(10,2) | YES  |     | NULL    |                |
++------------------+---------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from bookings;
++------------+------------+--------------+-----------+-------------+------------------+---------+----------------+------------+
+| booking_id | patient_id | patient_name | doctor_id | doctor_name | appointment_date | fees    | payment_amount | due_amount |
++------------+------------+--------------+-----------+-------------+------------------+---------+----------------+------------+
+|          1 |          1 | rubi         |         2 | gourab      | 2025-10-24       | 1000.00 |        1000.00 |       0.00 |
+|          2 |          2 | RUBI         |         1 | BIBHAS      | 2025-10-27       |  800.00 |         400.00 |     400.00 |
+|          3 |          3 | DEB          |         4 | UJJAL       | 2025-10-23       |  800.00 |        1200.00 |    -400.00 |
+|          4 |          5 | jiya         |         4 | neha        | 2025-10-28       | 1000.00 |         500.00 |     500.00 |
+|          5 |          3 | derek        |         6 | debashish   | 2025-10-29       | 1000.00 |        1000.00 |       0.00 |
+|          6 |         10 | pallab       |         1 | shib        | 2012-02-20       |  500.00 |         100.00 |     400.00 |
++------------+------------+--------------+-----------+-------------+------------------+---------+----------------+------------+
+6 rows in set (0.01 sec)
+
+mysql>
